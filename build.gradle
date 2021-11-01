@@ -21,8 +21,6 @@ dependencies {
     implementation 'org.junit.jupiter:junit-jupiter-api:5.8.0-M1'
     implementation 'com.codeborne:selenide:5.18.1'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
-//    testImplementation ''
-//    testImplementation 'org.junit.jupiter:junit-jupiter:4.12'
     testImplementation 'io.cucumber:cucumber-junit:6.9.0'
     testImplementation 'org.assertj:assertj-core:3.19.0'
 }
@@ -49,9 +47,9 @@ configurations {
     }
 }
 
-task testTask(){
+task testTask() {
     dependsOn assemble, testClasses
-    doLast{
+    doLast {
         javaexec {
             ignoreExitValue = true
             main = "io.cucumber.core.cli.Main"
@@ -60,24 +58,15 @@ task testTask(){
                     '--plugin', 'pretty',
                     '--plugin', 'html:target/cucumber-report.html',
                     '--tags', '@regression',
-                    '--glue', 'com.cucumber.junit', 'src/test/resources'
-//                    '--threads', threads
+                    '--glue', 'com.cucumber.junit', 'src/test/resources',
+                    '--threads', '2'
             ]
         }
     }
 }
 
-//test{
-//    maxParallelForks = 4
-//}
-//
-//ext{
-//    threads = properties['threads'] ?: 1 as Integer
-//}
-
-test{
-    useJUnitPlatform{
+test {
+    useJUnitPlatform {
         includeTags '@regression'
     }
-    maxParallelForks = (int) (Runtime.runtime.availableProcessors()/2+1)
 }

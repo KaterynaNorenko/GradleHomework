@@ -10,7 +10,7 @@ public class SearchResults extends BasePage {
 
 	private static final String SEARCH_RESULTS_PAGE_URL = "https://ecsc00a08ec4:9002/yacceleratorstorefront/electronics/en/search/?text={searchText}";
 	private static final By ADD_TO_ORDER_BTN = By.xpath("//form[@id='addToCartForm1934793']/descendant::button[@type='submit']");
-	private static final By CHECKOUT_BTN = By.xpath("//a[@href='/yacceleratorstorefront/electronics/en/cart' and @class='btn btn-primary btn-block add-to-cart-button']");
+	private static final By CHECKOUT_BTN = By.xpath("//a[@class='btn btn-primary btn-block add-to-cart-button']");
 	private static final By ADD_TO_CART_BTN = By.xpath("//form[@id='addToCartForm1225694']/descendant::button[@type='submit']");
 	private static final By SEARCH_RESULTS_PRODUCTS = By.xpath("//*[@class='product__list--name']");
 	private static final By RESULTS = By.xpath("//div[@class='results']");
@@ -20,6 +20,7 @@ public class SearchResults extends BasePage {
 	private static final String SHOP_BY_BRAND_PATTERN = "//a[contains(@href, 'Abrand') and contains (text(), '%s')]";
 
 	public void getAddToOrderButton() {
+		jsScrollByPixels("0", "150");
 		waitUntilElementClickable(ADD_TO_ORDER_BTN);
 		clickElement(ADD_TO_ORDER_BTN);
 	}
@@ -30,6 +31,7 @@ public class SearchResults extends BasePage {
 	}
 
 	public void getAddToCartButton() {
+		jsScrollByPixels("0", "150");
 		waitUntilElementClickable(ADD_TO_CART_BTN);
 		clickElement(ADD_TO_CART_BTN);
 	}
