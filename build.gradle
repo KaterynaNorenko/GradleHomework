@@ -54,12 +54,16 @@ task testTask() {
             ignoreExitValue = true
             main = "io.cucumber.core.cli.Main"
             classpath = sourceSets.main.runtimeClasspath + sourceSets.main.output + sourceSets.test.output
+            def tags = getProperty("tags")
+            def threads = getProperty("threads")
             args = [
                     '--plugin', 'pretty',
                     '--plugin', 'html:target/cucumber-report.html',
-                    '--tags', '@regression',
+                    '--tags', tags,
+//                    'tags', '@regression',
                     '--glue', 'com.cucumber.junit', 'src/test/resources',
-                    '--threads', '2'
+//                    '--threads', '2',
+                    '--threads', threads
             ]
         }
     }
@@ -67,6 +71,6 @@ task testTask() {
 
 test {
     useJUnitPlatform {
-        includeTags '@regression'
+//        includeTags '@regression'
     }
 }
